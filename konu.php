@@ -3,9 +3,15 @@ require_once 'config.php';
 
 $konu_id = intval($_GET['id'] ?? 0);
 
-// Görüntülenme sayısını artır
-$sorgu = $db->prepare("UPDATE konular SET goruntulenme = goruntulenme + 1 WHERE id = ?");
-$sorgu->execute([$konu_id]);
+// Görüntülenme sayısını artır (session ile tekrar sayılmasını önle)
+if (!isset($_SESSION['goruntulenen_konular'])) {
+    $_SESSION['goruntulenen_konular'] = [];
+}
+if (!in_array($konu_id, $_SESSION['goruntulenen_konular'])) {
+    $sorgu = $db->prepare("UPDATE konular SET goruntulenme = goruntulenme + 1 WHERE id = ?");
+    $sorgu->execute([$konu_id]);
+    $_SESSION['goruntulenen_konular'][] = $konu_id;
+}
 
 // Konu bilgilerini çek
 $sorgu = $db->prepare("
@@ -57,20 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && girisKontrol()) {
             $sorgu->execute([$konu_id]);
             
             $db->commit();
-            $basari = 'Mesajınız eklendi!';
             
-            // Mesajları yeniden yükle
-            $sorgu = $db->prepare("
-                SELECT m.*, k.kullanici_adi
-                FROM mesajlar m
-                LEFT JOIN kullanicilar k ON m.kullanici_id = k.id
-                WHERE m.konu_id = ?
-                ORDER BY m.olusturma_tarihi ASC
-            ");
-            $sorgu->execute([$konu_id]);
-            $mesajlar = $sorgu->fetchAll();
-            
-            $_POST['mesaj'] = '';
+            // Sayfa yenilendiğinde form tekrar gönderilmesin diye yönlendir
+            yonlendir("konu.php?id=$konu_id");
         } catch(PDOException $e) {
             $db->rollBack();
             $hata = 'Mesaj gönderme hatası: ' . $e->getMessage();

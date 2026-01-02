@@ -2,6 +2,12 @@
 require_once 'config.php';
 
 $hata = '';
+$basari = '';
+
+// Kayıt başarılı mesajı
+if (isset($_GET['kayit']) && $_GET['kayit'] == 'basarili') {
+    $basari = 'Kayıt başarılı! Şimdi giriş yapabilirsiniz.';
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $kullanici_adi = trim($_POST['kullanici_adi'] ?? '');
@@ -53,6 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <?php if ($hata): ?>
                 <div class="hata"><?php echo temizle($hata); ?></div>
+            <?php endif; ?>
+            
+            <?php if ($basari): ?>
+                <div class="basari"><?php echo temizle($basari); ?></div>
             <?php endif; ?>
             
             <form method="POST">

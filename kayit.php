@@ -2,7 +2,6 @@
 require_once 'config.php';
 
 $hata = '';
-$basari = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $kullanici_adi = trim($_POST['kullanici_adi'] ?? '');
@@ -32,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $sorgu = $db->prepare("INSERT INTO kullanicilar (kullanici_adi, email, sifre) VALUES (?, ?, ?)");
                 $sorgu->execute([$kullanici_adi, $email, $sifre_hash]);
                 
-                $basari = 'Kayıt başarılı! Giriş yapabilirsiniz.';
-                header("refresh:2;url=giris.php");
+                // Kayıt başarılı, giriş sayfasına yönlendir
+                yonlendir('giris.php?kayit=basarili');
             }
         } catch(PDOException $e) {
             $hata = 'Kayıt hatası: ' . $e->getMessage();
@@ -66,10 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <?php if ($hata): ?>
                 <div class="hata"><?php echo temizle($hata); ?></div>
-            <?php endif; ?>
-            
-            <?php if ($basari): ?>
-                <div class="basari"><?php echo temizle($basari); ?></div>
             <?php endif; ?>
             
             <form method="POST">
