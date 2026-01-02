@@ -2,7 +2,7 @@
 require_once 'config.php';
 
 // Kategorileri ve istatistikleri çek
-$sorgu = $db->query("
+$sorgu = $db->prepare("
     SELECT k.*, 
            COUNT(DISTINCT ko.id) as konu_sayisi,
            COUNT(DISTINCT m.id) as mesaj_sayisi
@@ -12,6 +12,7 @@ $sorgu = $db->query("
     GROUP BY k.id
     ORDER BY k.id ASC
 ");
+$sorgu->execute();
 $kategoriler = $sorgu->fetchAll();
 ?>
 <!DOCTYPE html>
