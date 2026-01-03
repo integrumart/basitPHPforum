@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($kullanici && password_verify($sifre, $kullanici['sifre'])) {
                 $_SESSION['kullanici_id'] = $kullanici['id'];
                 $_SESSION['kullanici_adi'] = $kullanici['kullanici_adi'];
+                $_SESSION['is_admin'] = $kullanici['is_admin'] ?? 0;
                 yonlendir('index.php');
             } else {
                 $hata = 'Kullanıcı adı veya şifre hatalı!';

@@ -30,6 +30,9 @@ $kategoriler = $sorgu->fetchAll();
             <nav>
                 <?php if (girisKontrol()): ?>
                     <span style="color: #ecf0f1;">Hoşgeldin, <?php echo temizle($_SESSION['kullanici_adi']); ?></span>
+                    <?php if (adminKontrol()): ?>
+                        <a href="admin.php">Admin Paneli</a>
+                    <?php endif; ?>
                     <a href="cikis.php">Çıkış</a>
                 <?php else: ?>
                     <a href="giris.php">Giriş</a>

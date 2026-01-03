@@ -264,3 +264,109 @@ nav a:hover {
     display: flex;
     align-items: center;
 }
+
+/* Admin Panel Stilleri */
+.admin-panel {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.admin-panel h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+.admin-panel h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.admin-liste {
+    background: transparent;
+    box-shadow: none;
+}
+
+.admin-liste .kategori-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.kategori-bilgi {
+    flex: 1;
+}
+
+.kategori-bilgi strong {
+    display: block;
+    color: #2c3e50;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.kategori-bilgi p {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin: 0;
+}
+
+.btn-sil {
+    background-color: #e74c3c;
+    padding: 8px 15px;
+    font-size: 13px;
+}
+
+.btn-sil:hover {
+    background-color: #c0392b;
+}
+
+/* Tablo Stilleri */
+.tablo-container {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+.admin-tablo {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+.admin-tablo th,
+.admin-tablo td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.admin-tablo th {
+    background-color: #34495e;
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.admin-tablo tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.admin-tablo td {
+    color: #2c3e50;
+}
+
+/* Mesaj Stilleri */
+.mesaj {
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}

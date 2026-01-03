@@ -30,6 +30,10 @@ function girisKontrol() {
     return isset($_SESSION['kullanici_id']);
 }
 
+function adminKontrol() {
+    return girisKontrol() && isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
+}
+
 function yonlendir($sayfa) {
     header("Location: $sayfa");
     exit();

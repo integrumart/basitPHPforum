@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS kullanicilar (
     kullanici_adi VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     sifre VARCHAR(255) NOT NULL,
+    is_admin TINYINT(1) NOT NULL DEFAULT 0,
     kayit_tarihi DATETIME DEFAULT CURRENT_TIMESTAMP,
     INDEX idx_kullanici_adi (kullanici_adi)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
