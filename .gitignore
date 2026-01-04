@@ -15,6 +15,11 @@
 # Yapılandırma dosyaları (hassas bilgiler içerebilir)
 # config.php dosyasını saklamak için yorum satırını kaldırın
 # config.php
+# includes/db.php
+
+# Kullanıcı yüklemeleri
+uploads/*
+!uploads/.gitkeep
 
 # Yedek dosyalar
 *.bak
@@ -25,3 +30,26 @@
 # Sistem dosyaları
 Thumbs.db
 desktop.ini
+
+# Bağımlılıklar (eğer Composer kullanılıyorsa)
+vendor/
+composer.lock
+
+# Node modules (eğer npm kullanılıyorsa)
+node_modules/
+package-lock.json
+
+# Önbellek
+cache/
+*.cache
+
+# Session dosyaları
+sessions/
+
+# Hata logları
+error_log
+php_errors.log
+
+# Güvenlik
+.htpasswd
+.env
